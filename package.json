@@ -1,12 +1,12 @@
 {
   "name": "element-lib",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "peerDependencies": {
     "@angular/common": "^11.0.5",
-    "@angular/core": "^11.0.5",
-    "@angular/elements": "^11.0.5"
+    "@angular/core": "^11.0.5"
   },
   "dependencies": {
+    "@angular/elements": "^11.0.5",
     "tslib": "^2.0.0"
   },
   "main": "bundles/element-lib.umd.js",
