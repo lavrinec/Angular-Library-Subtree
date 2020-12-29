@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('element-lib', ['exports', '@angular/core'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['element-lib'] = {}, global.ng.core));
-}(this, (function (exports, i0) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/elements')) :
+    typeof define === 'function' && define.amd ? define('element-lib', ['exports', '@angular/core', '@angular/elements'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['element-lib'] = {}, global.ng.core, global.ng.elements));
+}(this, (function (exports, i0, elements) { 'use strict';
 
     var ElementLibService = /** @class */ (function () {
         function ElementLibService() {
@@ -58,12 +58,15 @@
     })();
 
     var ElementLibModule = /** @class */ (function () {
-        function ElementLibModule() {
+        function ElementLibModule(injector) {
+            this.injector = injector;
+            var customElement = elements.createCustomElement(ElementLibComponent, { injector: injector });
+            customElements.define('element-component', customElement);
         }
         return ElementLibModule;
     }());
     ElementLibModule.ɵmod = i0.ɵɵdefineNgModule({ type: ElementLibModule });
-    ElementLibModule.ɵinj = i0.ɵɵdefineInjector({ factory: function ElementLibModule_Factory(t) { return new (t || ElementLibModule)(); }, imports: [[]] });
+    ElementLibModule.ɵinj = i0.ɵɵdefineInjector({ factory: function ElementLibModule_Factory(t) { return new (t || ElementLibModule)(i0.ɵɵinject(i0.Injector)); }, imports: [[]] });
     (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(ElementLibModule, { declarations: [ElementLibComponent], exports: [ElementLibComponent] }); })();
     /*@__PURE__*/ (function () {
         i0.ɵsetClassMetadata(ElementLibModule, [{
@@ -73,7 +76,7 @@
                         imports: [],
                         exports: [ElementLibComponent]
                     }]
-            }], null, null);
+            }], function () { return [{ type: i0.Injector }]; }, null);
     })();
 
     /*

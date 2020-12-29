@@ -1,4 +1,5 @@
-import { ɵɵdefineInjectable, ɵsetClassMetadata, Injectable, ɵɵdefineComponent, ɵɵelementStart, ɵɵtext, ɵɵelementEnd, ɵɵlistener, ɵɵadvance, ɵɵtextInterpolate1, Component, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
+import { ɵɵdefineInjectable, ɵsetClassMetadata, Injectable, ɵɵdefineComponent, ɵɵelementStart, ɵɵtext, ɵɵelementEnd, ɵɵlistener, ɵɵadvance, ɵɵtextInterpolate1, Component, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵinject, Injector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
 
 class ElementLibService {
     constructor() { }
@@ -49,9 +50,14 @@ ElementLibComponent.ɵcmp = ɵɵdefineComponent({ type: ElementLibComponent, sel
     }], function () { return []; }, null); })();
 
 class ElementLibModule {
+    constructor(injector) {
+        this.injector = injector;
+        const customElement = createCustomElement(ElementLibComponent, { injector });
+        customElements.define('element-component', customElement);
+    }
 }
 ElementLibModule.ɵmod = ɵɵdefineNgModule({ type: ElementLibModule });
-ElementLibModule.ɵinj = ɵɵdefineInjector({ factory: function ElementLibModule_Factory(t) { return new (t || ElementLibModule)(); }, imports: [[]] });
+ElementLibModule.ɵinj = ɵɵdefineInjector({ factory: function ElementLibModule_Factory(t) { return new (t || ElementLibModule)(ɵɵinject(Injector)); }, imports: [[]] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(ElementLibModule, { declarations: [ElementLibComponent], exports: [ElementLibComponent] }); })();
 /*@__PURE__*/ (function () { ɵsetClassMetadata(ElementLibModule, [{
         type: NgModule,
@@ -60,7 +66,7 @@ ElementLibModule.ɵinj = ɵɵdefineInjector({ factory: function ElementLibModule
                 imports: [],
                 exports: [ElementLibComponent]
             }]
-    }], null, null); })();
+    }], function () { return [{ type: Injector }]; }, null); })();
 
 /*
  * Public API Surface of element-lib
