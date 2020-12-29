@@ -22,6 +22,7 @@
 
     var ElementLibComponent = /** @class */ (function () {
         function ElementLibComponent() {
+            this.someString = '';
             this.counter = 0;
         }
         ElementLibComponent.prototype.ngOnInit = function () {
@@ -29,7 +30,7 @@
         return ElementLibComponent;
     }());
     ElementLibComponent.ɵfac = function ElementLibComponent_Factory(t) { return new (t || ElementLibComponent)(); };
-    ElementLibComponent.ɵcmp = i0.ɵɵdefineComponent({ type: ElementLibComponent, selectors: [["lib-element-lib"]], decls: 5, vars: 1, consts: [[3, "click"]], template: function ElementLibComponent_Template(rf, ctx) {
+    ElementLibComponent.ɵcmp = i0.ɵɵdefineComponent({ type: ElementLibComponent, selectors: [["lib-element-lib"]], inputs: { someString: "someString" }, decls: 5, vars: 2, consts: [[3, "click"]], template: function ElementLibComponent_Template(rf, ctx) {
             if (rf & 1) {
                 i0.ɵɵelementStart(0, "div");
                 i0.ɵɵelementStart(1, "p");
@@ -43,7 +44,7 @@
             }
             if (rf & 2) {
                 i0.ɵɵadvance(2);
-                i0.ɵɵtextInterpolate1("element-lib works:: ", ctx.counter, "");
+                i0.ɵɵtextInterpolate2("element works:: ", ctx.someString, " ", ctx.counter, "");
             }
         }, encapsulation: 2 });
     /*@__PURE__*/ (function () {
@@ -51,10 +52,12 @@
                 type: i0.Component,
                 args: [{
                         selector: 'lib-element-lib',
-                        template: "\n    <div>\n      <p>element-lib works:: {{ counter }}</p>\n      <button (click)=\"counter=counter+1\">Increase</button>\n    </div>\n  ",
+                        template: "\n    <div>\n      <p>element works:: {{ someString }} {{ counter }}</p>\n      <button (click)=\"counter=counter+1\">Increase</button>\n    </div>\n  ",
                         styles: []
                     }]
-            }], function () { return []; }, null);
+            }], function () { return []; }, { someString: [{
+                    type: i0.Input
+                }] });
     })();
 
     var ElementLibModule = /** @class */ (function () {
