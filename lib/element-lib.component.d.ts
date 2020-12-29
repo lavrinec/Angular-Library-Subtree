@@ -7,4 +7,3 @@ export declare class ElementLibComponent implements OnInit {
     static ɵfac: i0.ɵɵFactoryDef<ElementLibComponent, never>;
     static ɵcmp: i0.ɵɵComponentDefWithMeta<ElementLibComponent, "lib-element-lib", never, {}, {}, never, never>;
 }
-//# sourceMappingURL=element-lib.component.d.ts.map
